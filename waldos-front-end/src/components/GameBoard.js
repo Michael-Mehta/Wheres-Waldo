@@ -35,7 +35,7 @@ function GameBoard() {
           {
       secondArray.map((e, i) => (
        
-        <div className='grid-child'></div>
+        <ToggleItem id = {i} />
        
       ))
 }
