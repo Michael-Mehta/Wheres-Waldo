@@ -18,15 +18,36 @@ function GameBoard() {
     );
   };
 
+  
 
   return (
-    <div className='main'>
-        <div className='picture'>
-         <img src = {image} alt = "picture" />
-        </div>
+    <div >
         
+         <img src = {image} alt = "picture"  className='picture'/>
+         
+
+         
+         <div className='main-grid'>
+{
+    firstArray.map((e, a) => (
+      
+        <div>
+          {
+      secondArray.map((e, i) => (
+       
+        <div className='grid-child'></div>
+       
+      ))
+}
+      </div>
+      
+
+    ))
+}
+  
+</div>
     </div>
-  )
+  );
 }
 
 export default GameBoard
