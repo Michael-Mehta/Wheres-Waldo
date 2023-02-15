@@ -8,11 +8,18 @@ function GameBoard() {
 
   const ToggleItem = ({ id }) => {
     const [toggleThisElement, setToggleThisElement] = useState(false);
+    const [toggleDropdown, setToggleDropdown] = useState(false);
+    const dropdown = () => {
+      setToggleThisElement(!toggleThisElement)
+      setToggleDropdown(!toggleDropdown)
+
+    }
+    
     return (
       <div className={toggleThisElement ? "grid-child-two":"grid-child"} 
-      key={id} onClick = {() => setToggleThisElement(!toggleThisElement)} >
+      key={id} onClick = {() => dropdown()} >
         
-  
+      {toggleDropdown && <div className='grid-child-three'></div>}
         
       </div>
     );
