@@ -1,23 +1,18 @@
-import logo from './logo.svg';
+
 import './App.css';
+import GameBoard from './components/GameBoard';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>Welcome Challenger</h1>
+      <p>In order to beat this game you must find 
+        all the characters in the picture by clicking on them
+        at the end your time will be recorded and you will be placed
+        on a leaderboard</p>
+      <div>
+     < GameBoard />
+     </div>
     </div>
   );
 }
