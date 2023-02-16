@@ -1,5 +1,6 @@
 
 import './App.css';
+import imageTwo from './components/Waldo-Two.jpg'
 import GameBoard from './components/GameBoard';
 
 function App() {
@@ -10,6 +11,7 @@ function App() {
         all the characters in the picture by clicking on them
         at the end your time will be recorded and you will be placed
         on a leaderboard</p>
+        <img src = {imageTwo} alt = "Waldo" className='main-image'/>
       <div>
      < GameBoard />
      </div>

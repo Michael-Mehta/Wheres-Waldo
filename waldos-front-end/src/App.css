@@ -2,7 +2,10 @@
   text-align: center;
 }
 
-
+.main-image {
+  height:300px;
+  width: auto;
+}
 .App-header {
   background-color: #282c34;
   min-height: 100vh;
@@ -23,7 +26,7 @@
 
 
 .grid-child {
-  border: 1px solid rgba(0, 0, 0, 1);
+  border: 1px solid rgba(0, 0, 0, 0);
 
 height: 20px;
 width: 20px;
@@ -37,7 +40,7 @@ width: 20px;
 }
 .grid-child-three {
   border: 1px solid rgba(0, 0, 0, 1);
-  background-color: rgb(22, 177, 22);
+  
   margin-top:20px;
 height: 20px;
 width: 20px;
@@ -56,7 +59,7 @@ width: 20px;
 .main-grid {
   display: flex;
   margin-top: -510px;
-  margin-left: 310px;
+  margin-left: 303px;
   flex-direction: row;
 }
 

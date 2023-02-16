@@ -1,5 +1,7 @@
 import React, { useState } from 'react'
 import image from './Find_Waldo.jpg'
+import imageTwo from './Waldo.png'
+
 import '../App.css';
 
 function GameBoard() {
@@ -19,7 +21,7 @@ function GameBoard() {
       <div className={toggleThisElement ? "grid-child-two":"grid-child"} 
       key={id} onClick = {() => dropdown()} >
         
-      {toggleDropdown && <div className='grid-child-three'></div>}
+      {toggleDropdown && <img src = {imageTwo} alt = 'Waldo' className='grid-child-three'/>}
         
       </div>
     );
