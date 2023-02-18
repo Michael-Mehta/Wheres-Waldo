@@ -3,7 +3,7 @@
 }
 
 .main-image {
-  height:300px;
+  height: 300px;
   width: auto;
   border-radius: 5px;
 }
@@ -79,12 +79,12 @@ width: 20px;
 .main-grid {
   display: flex;
   margin-top: -510px;
-  margin-left: 303px;
+  margin-left: 300px;
   flex-direction: row;
 }
 
 .picture {
   height:500px;
   width: auto;
-
+  
 }

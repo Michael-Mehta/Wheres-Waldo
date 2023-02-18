@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import image from './Find_Waldo.jpg'
+import image from './Find_Waldo_Two.png'
 import imageTwo from './Waldo.png'
 import imageThree from './Waldo-Two.jpg'
 import imageFour from './kevin-hart-two.png'
@@ -13,8 +13,10 @@ function GameBoard({characters}) {
   const [firstArray, setFirstArray] = useState([...Array(34)])
   const [secondArray, setSecondArray] = useState([...Array(23)])
   const [foundWaldo, setFoundWaldo] = useState(false)
- 
-
+  const [foundKevinHart, setFoundKevinHart] = useState(false)
+  const [foundAllMight, setFoundAllMight] = useState(false)
+  const [foundEverything, setFoundEverything] = useState(false)
+  
 
 
   
@@ -30,9 +32,37 @@ function GameBoard({characters}) {
     const [found, setFound] = useState(false)
     
     
-   const mark = () => {
+   const markWaldo = () => {
     setFound(true)
     setFoundWaldo(true)
+    
+    
+    
+    {(foundWaldo && foundKevinHart && foundAllMight) && setFoundEverything(true)}
+    console.log(foundWaldo)
+   
+   }
+
+   const markKevin = () => {
+    setFound(true)
+    setFoundKevinHart(true)
+    
+    
+    
+    {(foundWaldo && foundKevinHart && foundAllMight) && setFoundEverything(true)}
+    console.log(foundWaldo)
+   
+   }
+
+   const markMight = () => {
+    setFound(true)
+    setFoundAllMight(true)
+    
+    
+    
+    {(foundWaldo && foundKevinHart && foundAllMight) && setFoundEverything(true)}
+    console.log(foundWaldo)
+    
    }
     const dropdown = () => {
       setToggleThisElement(!toggleThisElement)
@@ -42,29 +72,33 @@ function GameBoard({characters}) {
       {characters.map((character) =>
         {
          
-            {(character.xAxis === x && character.yAxis === y) &&
-            mark()}
-  
+            {(x === 29 && y === 18) &&
+            markWaldo()}
+
+            {(x === 29 && y === 19) &&
+            markWaldo()}
+
+           {(x === 7 && y === 6) &&
+            markKevin()}
+
+          {(x === 2 && y === 8) &&
+            markMight()}
 
 
-            
-            console.log(x)
-            console.log(y)
-            console.log(character.xAxis)
-            console.log(character.yAxis)
-         
-        
+            {(foundWaldo && foundKevinHart && foundAllMight) && setFoundEverything(true)}
+          
+
           }
     
       
+          
         
         )}
 
 
 
         
-     console.log(x)
-     console.log(y)
+     
       
     }
     
@@ -72,8 +106,8 @@ function GameBoard({characters}) {
       <div>
 
 {found && <img src={checkmark} alt = 'Checkmark' className = 'grid-child-four' />}
-{(x === 7 && y === 6) && <img src = {imageFour} alt = 'Kevin Hart' className='grid-child-five' />}
-{(x === 2 && y === 8) && <img src = {imageFive} alt = 'All Might' className='grid-child-five' />}
+
+     
       <div className={toggleThisElement ? "grid-child-two":"grid-child"} 
       key={id} onClick = {() => dropdown()} >
         
@@ -91,17 +125,18 @@ function GameBoard({characters}) {
 
   return (
     <div className="App">
-      {foundWaldo ? (<h1>Winner!!!!!!!!</h1>) : (<h1>Welcome Challenger</h1>)
+      {foundEverything ? (<h1>Winner!!!!!!!!</h1>) : (<h1>Welcome Challenger</h1>)
       }
-      {foundWaldo ? (<p>Please refresh the page to play again</p>) : (<p>In order to beat this game you must find 
+      {foundEverything ? (<p>Please refresh the page to play again</p>) : (<p>In order to beat this game you must find 
         all the characters in the picture by clicking on them
         at the end your time will be recorded and you will be placed
         on a leaderboard</p>
         )}
-        {!foundWaldo && <p>Double click on a found character to mark them</p>}
-        <img src = {imageThree} alt = "Waldo" className='main-image'/>
-        <img src = {imageFour} alt = "Kevin Hart"  className='main-image'/>
-        <img src = {imageFive} alt = "All Might"  className='main-image'/>
+       {!foundWaldo && <img src = {imageThree} alt = "Waldo" className='main-image'/>}
+        {!foundKevinHart && <img src = {imageFour} alt = "Kevin Hart"  className='main-image'/>}
+        {!foundAllMight && <img src = {imageFive} alt = "All Might"  className='main-image'/>}
+        {!foundEverything && <p>Double click on a found character to mark them then their picture will dissapear above</p>}
+        
       <div>
     <div >
         
