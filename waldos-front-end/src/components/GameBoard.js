@@ -2,6 +2,8 @@ import React, { useState } from 'react'
 import image from './Find_Waldo.jpg'
 import imageTwo from './Waldo.png'
 import imageThree from './Waldo-Two.jpg'
+import imageFour from './kevin-hart-two.png'
+import imageFive from './allMight-two.png'
 import checkmark from './checkmark.jpg'
 import '../App.css';
 
@@ -28,7 +30,10 @@ function GameBoard({characters}) {
     const [found, setFound] = useState(false)
     
     
-   
+   const mark = () => {
+    setFound(true)
+    setFoundWaldo(true)
+   }
     const dropdown = () => {
       setToggleThisElement(!toggleThisElement)
       setToggleDropdown(!toggleDropdown)
@@ -36,11 +41,10 @@ function GameBoard({characters}) {
     
       {characters.map((character) =>
         {
-          {(character.xAxis === x && character.yAxis === y) &&
-            (setFoundWaldo(true))}
-
+         
             {(character.xAxis === x && character.yAxis === y) &&
-            (setFound(true))}
+            mark()}
+  
 
 
             
@@ -59,8 +63,8 @@ function GameBoard({characters}) {
 
 
         
-     console.log(foundWaldo)
-     console.log(found)
+     console.log(x)
+     console.log(y)
       
     }
     
@@ -68,6 +72,8 @@ function GameBoard({characters}) {
       <div>
 
 {found && <img src={checkmark} alt = 'Checkmark' className = 'grid-child-four' />}
+{(x === 7 && y === 6) && <img src = {imageFour} alt = 'Kevin Hart' className='grid-child-five' />}
+{(x === 2 && y === 8) && <img src = {imageFive} alt = 'All Might' className='grid-child-five' />}
       <div className={toggleThisElement ? "grid-child-two":"grid-child"} 
       key={id} onClick = {() => dropdown()} >
         
@@ -90,14 +96,17 @@ function GameBoard({characters}) {
       {foundWaldo ? (<p>Please refresh the page to play again</p>) : (<p>In order to beat this game you must find 
         all the characters in the picture by clicking on them
         at the end your time will be recorded and you will be placed
-        on a leaderboard</p>)}
+        on a leaderboard</p>
+        )}
+        {!foundWaldo && <p>Double click on a found character to mark them</p>}
         <img src = {imageThree} alt = "Waldo" className='main-image'/>
+        <img src = {imageFour} alt = "Kevin Hart"  className='main-image'/>
+        <img src = {imageFive} alt = "All Might"  className='main-image'/>
       <div>
     <div >
         
          <img src = {image} alt = "picture"  className='picture'/>
          
-
          
          <div className='main-grid'>
 {
