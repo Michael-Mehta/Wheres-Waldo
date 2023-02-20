@@ -24,6 +24,7 @@ function getAPIData(){
 function App() {
 
   const [characters, setCharacters] = useState([])
+  
 
 
 useEffect(() => {
@@ -44,6 +45,9 @@ useEffect(() => {
 
 
 }, []);
+
+
+
 
   return (
     

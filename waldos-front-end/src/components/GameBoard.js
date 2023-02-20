@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import image from './Find_Waldo_Two.png'
 import imageTwo from './Waldo.png'
 import imageThree from './Waldo-Two.jpg'
@@ -9,19 +9,23 @@ import '../App.css';
 
 function GameBoard({characters}) {
 
-
+  const [startGame, setStartGame] = useState(false)
   const [firstArray, setFirstArray] = useState([...Array(34)])
   const [secondArray, setSecondArray] = useState([...Array(23)])
   const [foundWaldo, setFoundWaldo] = useState(false)
   const [foundKevinHart, setFoundKevinHart] = useState(false)
   const [foundAllMight, setFoundAllMight] = useState(false)
   const [foundEverything, setFoundEverything] = useState(false)
-  
+  const [time, setTime] = useState(0)
+  const [timerOn, setTimerOn] = useState(false);
 
 
   
 
-
+const begin = () => {
+  setTimerOn(true)
+  setStartGame(true)
+}
 
   
 
@@ -121,6 +125,23 @@ function GameBoard({characters}) {
     );
   };
 
+
+
+  useEffect(() => {
+    let interval = null;
+
+    if (timerOn) {
+      interval = setInterval(() => {
+        setTime((prevTime) => prevTime + 10);
+      }, 10);
+    } else if (!timerOn) {
+      clearInterval(interval);
+    }
+
+    return () => clearInterval(interval);
+  }, [timerOn]);
+
+
   
 
   return (
@@ -137,13 +158,31 @@ function GameBoard({characters}) {
         {!foundAllMight && <img src = {imageFive} alt = "All Might"  className='main-image'/>}
         {!foundEverything && <p>Double click on a found character to mark them then their picture will dissapear above</p>}
         
+
+        <h2>Stopwatch</h2>
+      <div id="display">
+        <span>{("0" + Math.floor((time / 60000) % 60)).slice(-2)}:</span>
+        <span>{("0" + Math.floor((time / 1000) % 60)).slice(-2)}:</span>
+        <span>{("0" + ((time / 10) % 100)).slice(-2)}</span>
+      </div>
+
+      <div id="buttons">
+        {!timerOn && time === 0 && (
+          <button onClick={() => begin()}>Start Game</button>
+        )}
+        {timerOn && <button onClick={() => setTimerOn(false)}>Stop</button>}
+        {!timerOn && time > 0 && (
+          <button onClick={() => setTime(0)}>Reset</button>
+        )}
+        
+      </div>
       <div>
     <div >
         
-         <img src = {image} alt = "picture"  className='picture'/>
+         {startGame && <img src = {image} alt = "picture"  className='picture'/>}
          
          
-         <div className='main-grid'>
+        {startGame && <div className='main-grid'>
 {
     firstArray.map((e, a) => (
       
@@ -163,7 +202,7 @@ function GameBoard({characters}) {
     ))
 }
   
-</div>
+</div>}
     </div>
     </div>
     </div>
