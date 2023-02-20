@@ -22,10 +22,7 @@ function GameBoard({characters}) {
 
   
 
-const begin = () => {
-  setTimerOn(true)
-  setStartGame(true)
-}
+
 
   
 
@@ -90,8 +87,7 @@ const begin = () => {
 
 
             {(foundWaldo && foundKevinHart && foundAllMight) && setFoundEverything(true)}
-          
-
+            
           }
     
       
@@ -125,6 +121,9 @@ const begin = () => {
     );
   };
 
+  useEffect(() => {
+    setTimerOn(true)
+  }, []);
 
 
   useEffect(() => {
@@ -168,7 +167,7 @@ const begin = () => {
 
       <div id="buttons">
         {!timerOn && time === 0 && (
-          <button onClick={() => begin()}>Start Game</button>
+          <button onClick={() => setTimerOn(true)}>Start Game</button>
         )}
         {timerOn && <button onClick={() => setTimerOn(false)}>Stop</button>}
         {!timerOn && time > 0 && (
@@ -179,18 +178,18 @@ const begin = () => {
       <div>
     <div >
         
-         {startGame && <img src = {image} alt = "picture"  className='picture'/>}
+         <img src = {image} alt = "picture"  className='picture'/>
          
          
-        {startGame && <div className='main-grid'>
+        <div className='main-grid'>
 {
     firstArray.map((e, a) => (
       
-        <div>
+       <div>
           {
       secondArray.map((e, i) => (
-       
-        <ToggleItem id = {i}
+       console.log("here"),
+         <ToggleItem id = {i}
         x = {a} 
         y = {i}/>
        
@@ -202,7 +201,7 @@ const begin = () => {
     ))
 }
   
-</div>}
+</div>
     </div>
     </div>
     </div>
