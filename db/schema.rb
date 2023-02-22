@@ -10,11 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_02_12_005209) do
+ActiveRecord::Schema[7.0].define(version: 2023_02_21_231215) do
   create_table "characters", force: :cascade do |t|
     t.string "name"
     t.integer "xAxis"
     t.integer "yAxis"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string "name"
+    t.integer "time"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

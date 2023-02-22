@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import Leaderboard from './Leaderboard'
 import image from './Find_Waldo_Two.png'
 import imageTwo from './Waldo.png'
 import imageThree from './Waldo-Two.jpg'
@@ -9,7 +10,7 @@ import '../App.css';
 
 function GameBoard({characters}) {
 
-  const [startGame, setStartGame] = useState(false)
+ 
   const [firstArray, setFirstArray] = useState([...Array(34)])
   const [secondArray, setSecondArray] = useState([...Array(23)])
   const [foundWaldo, setFoundWaldo] = useState(false)
@@ -17,8 +18,9 @@ function GameBoard({characters}) {
   const [foundAllMight, setFoundAllMight] = useState(false)
   const [foundEverything, setFoundEverything] = useState(false)
   const [time, setTime] = useState(0)
-  const [timerOn, setTimerOn] = useState(false);
-
+  const [timerOn, setTimerOn] = useState(false)
+  const [name, setName] = useState('')
+  const [createLeader, setCreateLeader] = useState(false)
 
   
 
@@ -40,7 +42,7 @@ function GameBoard({characters}) {
     
     
     {(foundWaldo && foundKevinHart && foundAllMight) && setFoundEverything(true)}
-    console.log(foundWaldo)
+
    
    }
 
@@ -51,7 +53,7 @@ function GameBoard({characters}) {
     
     
     {(foundWaldo && foundKevinHart && foundAllMight) && setFoundEverything(true)}
-    console.log(foundWaldo)
+
    
    }
 
@@ -62,7 +64,7 @@ function GameBoard({characters}) {
     
     
     {(foundWaldo && foundKevinHart && foundAllMight) && setFoundEverything(true)}
-    console.log(foundWaldo)
+
     
    }
     const dropdown = () => {
@@ -147,6 +149,36 @@ function GameBoard({characters}) {
   }, [timerOn]);
 
 
+  const handleNameChange = (event) => {
+    const value = event.target.value;
+    setName(value);
+  };
+
+
+  const createWinner = (name, time) => {
+
+    const data = {
+        name,
+        time,
+    }
+
+    fetch('http://localhost:3000/api/v1/users', {
+        method: 'POST',
+        headers: {
+            'Content-type': 'application/json'
+        },
+        body: JSON.stringify(data)
+
+    }).then((response) => response.json())
+    .then((data) => {
+        console.log(data)
+      
+    })
+    .catch((error) => {
+        console.log('Error:', error)
+    })
+}
+ 
   
 
   return (
@@ -189,10 +221,10 @@ function GameBoard({characters}) {
 {
     firstArray.map((e, a) => (
       
-       <div>
+       <div key = {a}>
           {
       secondArray.map((e, i) => (
-       console.log("here"),
+   
          <ToggleItem id = {i}
         x = {a} 
         y = {i}/>
@@ -208,6 +240,15 @@ function GameBoard({characters}) {
 </div>
     </div>
     </div>
+
+{!timerOn && foundEverything && <div>
+    <label htmlFor="nameInput"> Name: </label>
+
+<input onChange = {handleNameChange} value = {name} type = "text" id = "emailInput"/>
+
+<button onClick={() =>  createWinner(name, time)}>Submit</button>
+</div>}
+    { (<Leaderboard />)}
     </div>
   );
 }
