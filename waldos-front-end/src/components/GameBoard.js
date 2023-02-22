@@ -111,7 +111,7 @@ function GameBoard({characters}) {
 
      
       <div className={toggleThisElement ? "grid-child-two":"grid-child"} 
-      key={id} onClick = {() => dropdown()} >
+      key={id} onMouseDown = {() => dropdown()} >
         
       {toggleDropdown && <img src = {imageTwo} alt = 'Waldo' className='grid-child-three'/>}
       
