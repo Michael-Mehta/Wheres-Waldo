@@ -45,12 +45,18 @@ useEffect(() => {
 
   return (
     <div>
-        <h1>Past Winners</h1>
+        <h1>Past winners and their times</h1>
         <div >
             
               {leaderboard.map(leader=> <div className='leaders'>
+                <div>
                 <p>{leader.name}  </p>
-                <p>{leader.time} seconds</p>
+                </div>
+                <div className = 'leaderboard'>
+        <p>{("0" + Math.floor((leader.time / 60000) % 60)).slice(-2)}:</p>
+        <p>{("0" + Math.floor((leader.time / 1000) % 60)).slice(-2)}:</p>
+        <p>{("0" + ((leader.time / 10) % 100)).slice(-2)}</p>
+               </div>
               
               </div>)}
 

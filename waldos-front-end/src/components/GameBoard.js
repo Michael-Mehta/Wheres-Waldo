@@ -248,7 +248,7 @@ function GameBoard({characters}) {
 
 <button onClick={() =>  createWinner(name, time)}>Submit</button>
 </div>}
-    { (<Leaderboard />)}
+    {(<Leaderboard />)}
     </div>
   );
 }
